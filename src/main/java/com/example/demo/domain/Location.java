@@ -13,11 +13,12 @@ import java.util.List;
 public class Location {
 
     @Id @GeneratedValue
-    private Long id;
+    private Integer id;
 
     private String street;
     private String town;
     private int zip;
+    private String state;
 
 
 
@@ -30,6 +31,7 @@ public class Location {
         this.street = street;
         this.town = "Evanston";
         this.zip = 60201;
+        this.state = "IL";
     }
 
     public Location(String street, String town, int zip){
@@ -41,11 +43,11 @@ public class Location {
 
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -79,5 +81,13 @@ public class Location {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

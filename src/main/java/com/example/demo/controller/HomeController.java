@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Item;
+import com.example.demo.domain.Location;
 import com.example.demo.domain.Project;
+import com.example.demo.domain.Sponsor;
+import com.example.demo.repository.ProjectRepository;
 import com.example.demo.service.ProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,11 +30,15 @@ public class HomeController {
         this.projectService=projectService;
     }
 
-
     @RequestMapping("/")
     public String home(Model model){
-        model.addAttribute("sponsor", this.projectService.getSponsorName(1));
-        logger.info("homepage");
+        Project project = projectService.getCurrentProject();
+        Location location = project.getLocation();
+        Item item = project.getItem();
+        Sponsor sponsor = project.getSponsor();
+        model.addAttribute("sponsor", sponsor.getName());
+        model.addAttribute("item", item);
+        model.addAttribute("location", location.getStreet()+", "+location.getTown()+" "+location.getState()+ " "+location.getZip());
         return "index";
     }
 }

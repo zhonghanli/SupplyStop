@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sponsors</title>
+    <!--<p th:text="${message.body}"></p>-->
+</head>
+<body>
+    <tr th:each="sponsor : ${sponsors}">
+        <a th:href="@{/sponsors/{id}(id=${sponsor.Id})}"><td th:text="${sponsor.Name}"></td></a>
+    </tr>
+</body>
+</html>

@@ -5,6 +5,8 @@ import com.example.demo.repository.SponsorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by John on 7/11/2017.
  */
@@ -17,9 +19,7 @@ public class SponsorService {
 
     public String getSponsorName(int id){
        Sponsor sponsor = sponsorRepository.findById(id);
-
        return sponsor.getName();
-        // return this.sponsorRepository.SponsorName(id);
     }
 
     public String getSponsorType(int id){
@@ -29,4 +29,6 @@ public class SponsorService {
     public String getSponsorSize(int id){
         return this.sponsorRepository.SponsorSize(id);
     }
+
+    public List<Sponsor> getAllSponsors(){ return this.sponsorRepository.findAllByOrderByIdDesc();}
 }

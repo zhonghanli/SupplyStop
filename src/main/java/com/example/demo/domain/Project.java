@@ -12,7 +12,7 @@ import java.util.Date;
 public class Project {
 
     @GeneratedValue @Id
-    private Long id;
+    private Integer id;
 
     @ManyToOne
     private Location location;
@@ -42,11 +42,11 @@ public class Project {
     }
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

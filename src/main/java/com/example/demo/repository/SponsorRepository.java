@@ -7,6 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by John on 7/11/2017.
  */
@@ -22,4 +24,6 @@ public interface SponsorRepository extends CrudRepository<Sponsor, Integer>{
 
     @Query(value ="SELECT type FROM Sponsor where id = :id", nativeQuery =true)
     String SponsorType(@Param("id") int id);
+
+    List<Sponsor> findAllByOrderByIdDesc();
 }

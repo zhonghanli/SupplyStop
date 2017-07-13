@@ -28,7 +28,9 @@ public class SupplystopApplicationTests {
 
 	@Test
 	public void returnDefaultMessage() throws Exception {
-		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("index")));
-	}
+		this.mockMvc.perform(get("/sponsors/1"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString("Dominos")));
 
+	}
 }
