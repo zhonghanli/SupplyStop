@@ -25,7 +25,7 @@ public class Sponsor {
 
 
 
-    @OneToMany(mappedBy = "sponsor")
+    @OneToMany(mappedBy = "sponsor", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Project> projects;
 
     //private, empty constructor

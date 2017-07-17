@@ -1,9 +1,6 @@
 package com.example.demo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.net.PortUnreachableException;
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class Item {
 
     private String type;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Project> projects;
 
 
