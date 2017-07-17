@@ -26,4 +26,5 @@ public interface SponsorRepository extends CrudRepository<Sponsor, Integer>{
     String SponsorType(@Param("id") int id);
 
     List<Sponsor> findAllByOrderByIdDesc();
+
 }

@@ -28,19 +28,27 @@ public class SponsorController {
     @RequestMapping("/")
     public String sponsors(Model model){
         List<Sponsor> s = sponsorService.getAllSponsors();
-//        List<String> sponsors = new ArrayList<>();
-//        Iterator<Sponsor> sponsorIterator = s.iterator();
-//        while(sponsorIterator.hasNext()){
-//            sponsors.add(sponsorIterator.next().getName());
-//        }
         model.addAttribute("sponsors",s);
+        model.addAttribute("s",new Sponsor());
         return "sponsors";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String sponsorName(@PathVariable(value="id") int id){
-        return sponsorService.getSponsorName(id) + "\n" + sponsorService.getSponsorType(id) + "\n" + sponsorService.getSponsorSize(id);
+    public String sponsorName(Model model, @PathVariable(value="id") int id){
+        model.addAttribute("name", sponsorService.getSponsorName(id));
+        model.addAttribute("type", sponsorService.getSponsorType(id));
+        model.addAttribute("size", sponsorService.getSponsorSize(id));
+        return "sponsorProfile";
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteSponsor(@PathVariable(value="id") int id){
+        this.sponsorService.delete(id);
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public String newSponsor(@ModelAttribute("s") Sponsor sponsor){
+        sponsorService.create(sponsor.getName(),sponsor.getType(),sponsor.getSize());
+        return "sponsors";
+    }
 }

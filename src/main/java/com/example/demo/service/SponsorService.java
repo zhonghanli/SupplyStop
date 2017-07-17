@@ -31,4 +31,15 @@ public class SponsorService {
     }
 
     public List<Sponsor> getAllSponsors(){ return this.sponsorRepository.findAllByOrderByIdDesc();}
+
+    public void create(String name, String type, String size){
+        Sponsor sponsor = new Sponsor(name, size, type);
+        sponsorRepository.save(sponsor);
+    }
+//    Sponsor update(Integer integer, Sponsor sponsor);
+//
+    public void delete(Integer integer){
+        sponsorRepository.delete(integer);
+    };
+
 }

@@ -29,7 +29,7 @@ public class Sponsor {
     private List<Project> projects;
 
     //private, empty constructor
-    private Sponsor() {
+    public Sponsor() {
     }
 
     public Sponsor(String name, String size,  String type){
