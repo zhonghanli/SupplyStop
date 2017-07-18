@@ -31,7 +31,7 @@ public class Project {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    private Project(){}
+    public Project(){}
 
     public Project(Sponsor sponsor, Location location, Item item, int quantity, int price){
         this.sponsor = sponsor;

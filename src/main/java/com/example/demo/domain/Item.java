@@ -20,7 +20,7 @@ public class Item {
     private List<Project> projects;
 
 
-    private Item(){}
+    public Item(){}
 
     public Item(String type){
         this.type = type;

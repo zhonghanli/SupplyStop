@@ -47,8 +47,10 @@ public class SponsorController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String newSponsor(@ModelAttribute("s") Sponsor sponsor){
-        sponsorService.create(sponsor.getName(),sponsor.getType(),sponsor.getSize());
+    public String newSponsor(@ModelAttribute("s") Sponsor sponsor, Model model){
+        sponsorService.save(sponsor);
+        List<Sponsor> s = sponsorService.getAllSponsors();
+        model.addAttribute("sponsors",s);
         return "sponsors";
     }
 }

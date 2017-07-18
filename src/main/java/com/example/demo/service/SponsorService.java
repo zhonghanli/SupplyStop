@@ -36,6 +36,10 @@ public class SponsorService {
         Sponsor sponsor = new Sponsor(name, size, type);
         sponsorRepository.save(sponsor);
     }
+
+    public void save(Sponsor sponsor){
+        sponsorRepository.save(sponsor);
+    }
 //    Sponsor update(Integer integer, Sponsor sponsor);
 //
     public void delete(Integer integer){

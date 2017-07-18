@@ -22,7 +22,7 @@ public class Location {
     @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Project> projects;
 
-    private Location(){}
+    public Location(){}
 
     public Location(String street){
         this.street = street;
