@@ -1,8 +1,12 @@
 package com.example.demo.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 /**
@@ -24,7 +28,12 @@ public class Project {
     private Sponsor sponsor;
 
     //quantity of item and unit price
+    @Min(value = 500, message = "Quantity should be over 500.")
+    @Max(value = 10000, message = "Quantity should not exceed 10000!")
     private int quantity;
+
+    @Min(value = 5, message = "Price should exceed 5 cents.")
+    @Max(value = 100, message = "Price should not exceed 100 cents.")
     private int price;
 
     @CreatedDate

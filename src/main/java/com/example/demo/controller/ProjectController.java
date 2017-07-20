@@ -31,7 +31,7 @@ public class ProjectController {
 
     @RequestMapping("/{id}")
     public String projectInfo(Model model, @PathVariable(value = "id") int id){
-        model.addAttribute("p", projectService.list().get(projectService.list().size()-id));
+        model.addAttribute("p", projectService.findById(id));
         return "projectProfile";
     }
 }

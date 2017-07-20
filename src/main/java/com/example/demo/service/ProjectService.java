@@ -34,8 +34,6 @@ public class ProjectService {
     }
 
 
-    public String getSponsorName(int id){ return this.projectRepository.SponsorName(id);}
-
     public Project getCurrentProject(){ return this.projectRepository.findFirstByOrderByIdDesc();}
 
     public List<Project> list(){return this.projectRepository.findAllByOrderByIdDesc();}
@@ -47,27 +45,14 @@ public class ProjectService {
     }
     public List<Location> listLocations(){return this.locationRepository.findAllByOrderByIdDesc();}
 
-    public Sponsor loadSponsor(Integer integer){
-        return this.sponsorRepository.findById(integer);
-    }
-    public Item loadItem(Integer integer){
-        return this.itemRepository.findById(integer);
-    }
-    public Location loadLocation(Integer integer){
-        return this.locationRepository.findById(integer);
-    }
-
-    public void create(Sponsor sponsor, Location location, Item item, int quantity, int price){
-        Project project = new Project(sponsor, location, item, quantity, price);
-
-        //sets date to current time
-        Date date = new Date();
-        project.setDate(date);
-
-        projectRepository.save(project);
-    }
 
     public void save(Project project){
         projectRepository.save(project);
+        Date date = new Date();
+        project.setDate(date);
+    }
+
+    public Project findById(Integer id){
+        return projectRepository.findById(id);
     }
 }

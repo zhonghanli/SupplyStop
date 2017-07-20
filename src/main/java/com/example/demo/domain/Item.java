@@ -1,5 +1,8 @@
 package com.example.demo.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.net.PortUnreachableException;
 import java.util.List;

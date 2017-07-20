@@ -1,16 +1,18 @@
 package com.example.demo.controller;
 
+import com.example.demo.SupplystopApplication;
 import com.example.demo.domain.Sponsor;
 import com.example.demo.service.SponsorService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.List;
+
 
 /**
  * Created by John on 7/11/2017.
@@ -18,6 +20,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/sponsors")
 public class SponsorController {
+    private static final org.slf4j.Logger logger= LoggerFactory.getLogger(SupplystopApplication.class);
+
     private SponsorService sponsorService;
 
     @Autowired
@@ -35,20 +39,20 @@ public class SponsorController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String sponsorName(Model model, @PathVariable(value="id") int id){
-        model.addAttribute("name", sponsorService.getSponsorName(id));
-        model.addAttribute("type", sponsorService.getSponsorType(id));
-        model.addAttribute("size", sponsorService.getSponsorSize(id));
+        model.addAttribute("sponsor", sponsorService.findById(id));
         return "sponsorProfile";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteSponsor(@PathVariable(value="id") int id){
+        logger.info("Deleted Sponsor with name: " + sponsorService.findById(id).getName());
         this.sponsorService.delete(id);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String newSponsor(@ModelAttribute("s") Sponsor sponsor, Model model){
         sponsorService.save(sponsor);
+        logger.info("Created a new sponsor with name: "+sponsor.getName());
         List<Sponsor> s = sponsorService.getAllSponsors();
         model.addAttribute("sponsors",s);
         return "sponsors";
