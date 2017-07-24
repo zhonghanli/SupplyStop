@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.Project;
 import com.example.demo.domain.Sponsor;
 import com.example.demo.repository.SponsorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +18,25 @@ public class SponsorService {
     @Autowired
     public SponsorService(SponsorRepository sponsorRepository){this.sponsorRepository =sponsorRepository;}
 
-    public String getSponsorName(int id){
-       Sponsor sponsor = sponsorRepository.findById(id);
-       return sponsor.getName();
-    }
-
-    public String getSponsorType(int id){
-        return this.sponsorRepository.SponsorType(id);
-    }
-
-    public String getSponsorSize(int id){
-        return this.sponsorRepository.SponsorSize(id);
+    public Sponsor findById(Integer id){
+        return this.sponsorRepository.findById(id);
     }
 
     public List<Sponsor> getAllSponsors(){ return this.sponsorRepository.findAllByOrderByIdDesc();}
+
+    public void create(String name, String type, String size){
+        Sponsor sponsor = new Sponsor(name, size, type);
+        sponsorRepository.save(sponsor);
+    }
+
+    public void save(Sponsor sponsor){
+        sponsorRepository.save(sponsor);
+    }
+//    Sponsor update(Integer integer, Sponsor sponsor);
+//
+    public void delete(Integer integer){
+        sponsorRepository.delete(integer);
+    };
+
+
 }

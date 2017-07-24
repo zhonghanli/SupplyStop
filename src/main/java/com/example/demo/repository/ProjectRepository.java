@@ -12,7 +12,7 @@ import java.util.List;
  * Created by John on 7/11/2017.
  */
 @Repository
-public interface ProjectRepository extends CrudRepository<Project, Integer>{
+public interface ProjectRepository extends CrudRepository<Project, Integer> {
     @Query(value = "select s.name from Project p inner join Sponsor s on p.Sponsor_id = s.id where p.id = :id", nativeQuery = true)
     String SponsorName(@Param("id") int id);
 
@@ -20,4 +20,5 @@ public interface ProjectRepository extends CrudRepository<Project, Integer>{
 
     List<Project> findAllByOrderByIdDesc();
 
+    Project findById(Integer id);
 }

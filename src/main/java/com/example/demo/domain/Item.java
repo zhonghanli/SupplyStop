@@ -1,9 +1,9 @@
 package com.example.demo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
 import java.net.PortUnreachableException;
 import java.util.List;
 
@@ -19,11 +19,11 @@ public class Item {
 
     private String type;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Project> projects;
 
 
-    private Item(){}
+    public Item(){}
 
     public Item(String type){
         this.type = type;

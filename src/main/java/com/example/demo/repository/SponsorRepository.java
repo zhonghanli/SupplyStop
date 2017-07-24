@@ -19,11 +19,5 @@ public interface SponsorRepository extends CrudRepository<Sponsor, Integer>{
 
     Sponsor findById(Integer integer);
 
-    @Query(value ="SELECT size FROM Sponsor where id = :id", nativeQuery =true)
-    String SponsorSize(@Param("id") int id);
-
-    @Query(value ="SELECT type FROM Sponsor where id = :id", nativeQuery =true)
-    String SponsorType(@Param("id") int id);
-
     List<Sponsor> findAllByOrderByIdDesc();
 }
