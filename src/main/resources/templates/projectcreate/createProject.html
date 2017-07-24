@@ -25,11 +25,11 @@
     <br/>
     <label for="quantity">Quantity:</label>
     <input id="quantity"  th:type="number" th:field="*{Quantity}" min="1"/>
-    <p th:if="${#fields.hasErrors('quantity')}" th:error="*{quantity}">Quantity Error</p>
+    <p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Quantity Error</p>
     <br/>
     <label for="price">Price:</label>
     <input id="price" th:type="number" th:field="*{Price}" min="1"/>
-    <p th:if="${#fields.hasErrors('price')}" th:error="*{price}">Price Error</p>
+    <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
 
 
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>

@@ -156,6 +156,4 @@ public class SupplystopApplicationTests {
 				.andExpect(model().attributeHasFieldErrors("project", "price"));
 	}
 
-
-
 }
