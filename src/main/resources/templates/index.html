@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8"/>
     <title>SupplyStop</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 </head>
 <body>
+    <div class="container">
     <p th:text="|Current Sponsor : ${sponsor}|"></p>
     <p th:text="|Current Freebie : ${item.Type}|"></p>
     <p th:text="|Current Location : ${location}|"></p>
     <a href="/sponsors/">All Sponsors</a><br/>
     <a href="/projects/">Project Directory</a><br/>
     <a href="/create/">Create a Project</a><br/>
-
+    </div>
 </body>
 </html>

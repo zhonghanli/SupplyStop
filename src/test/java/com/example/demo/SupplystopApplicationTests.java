@@ -119,14 +119,27 @@ public class SupplystopApplicationTests {
 				.andExpect(model().attributeHasFieldErrors("sponsor","type"));
 	}
 
+	@Test
+	public void	projectPostWorks() throws Exception{
+		this.mockMvc.perform(post("/create")
+				.param("quantity", "1000")
+				.param("price", "50")
+				.param("sponsor", "1")
+				.param("item", "1"))
+				.andExpect(view().name("projectcreate/createProject"))
+				.andExpect(status().isOk());
+	}
+
 
 	@Test
 	public void projectPostQuantityTooLowValidation() throws  Exception{
 		this.mockMvc.perform(post("/create")
-			.param("quantity", "1")
-			.param("price", "50"))
-			.andExpect(view().name("projectcreate/createProject"))
-			.andExpect(model().attributeHasFieldErrors("project", "quantity"));
+				.param("quantity", "1")
+				.param("price", "50")
+				.param("sponsor", "1")
+				.param("item", "1"))
+				.andExpect(view().name("projectcreate/createProject"))
+				.andExpect(model().attributeHasFieldErrors("project", "quantity"));
 	}
 
 	@Test
@@ -151,9 +164,33 @@ public class SupplystopApplicationTests {
 	public void	projectPostPriceTooHighValidation() throws Exception{
 		this.mockMvc.perform(post("/create")
 				.param("quantity", "1000")
-				.param("price", "999"))
+				.param("price", "999")
+				.param("sponsor", "1")
+				.param("item", "1"))
 				.andExpect(view().name("projectcreate/createProject"))
 				.andExpect(model().attributeHasFieldErrors("project", "price"));
+	}
+
+	@Test
+	public void	projectPostSponsorError() throws Exception{
+		this.mockMvc.perform(post("/create")
+				.param("quantity", "1000")
+				.param("price", "50")
+				.param("sponsor", "20")
+				.param("item", "1"))
+				.andExpect(view().name("projectcreate/createProject"))
+				.andExpect(model().attributeHasFieldErrors("project", "sponsor"));
+	}
+
+	@Test
+	public void	projectPostItemError() throws Exception{
+		this.mockMvc.perform(post("/create")
+				.param("quantity", "1000")
+				.param("price", "50")
+				.param("sponsor", "1")
+				.param("item", "30"))
+				.andExpect(view().name("projectcreate/createProject"))
+				.andExpect(model().attributeHasFieldErrors("project", "item"));
 	}
 
 }

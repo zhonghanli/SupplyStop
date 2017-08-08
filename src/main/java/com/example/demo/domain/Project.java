@@ -7,7 +7,9 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by John on 7/11/2017.
@@ -19,12 +21,15 @@ public class Project {
     private Integer id;
 
     @ManyToOne
+    @NotNull
     private Location location;
 
     @ManyToOne
+    @NotNull(message = "Choose an existing item.")
     private Item item;
 
     @ManyToOne
+    @NotNull(message = "Choose an existing sponsor.")
     private Sponsor sponsor;
 
     //quantity of item and unit price
