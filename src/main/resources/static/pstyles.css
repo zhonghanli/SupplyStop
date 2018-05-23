@@ -1,0 +1,9 @@
+body {
+    padding-top: 60px;
+    /*background-color: #BCEFF7 !important;*/
+}
+
+@media (min-width: 979px) {
+    body {
+    }
+}

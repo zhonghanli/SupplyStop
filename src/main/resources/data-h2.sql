@@ -17,8 +17,8 @@ INSERT INTO Item (Cost, Type) VALUES (1, 'towels');
 INSERT INTO Item (Cost, Type) VALUES (1, 'frisbees');
 
 INSERT INTO Sponsor(NAME, SIZE, type) VALUES('Arbys', 's', 'Restaurant') ;
-INSERT INTO Sponsor(NAME, SIZE, type) VALUES('Bennisons', 's', 'Restaurant') ;
-INSERT INTO Sponsor(NAME, SIZE, type) VALUES('Cheesies', 's', 'Restaurant') ;
+INSERT INTO Sponsor(NAME, SIZE, type) VALUES('McDonalds', 's', 'Restaurant') ;
+INSERT INTO Sponsor(NAME, SIZE, type) VALUES('Burger King', 's', 'Restaurant') ;
 Insert into Project values (3, CURRENT_DATE(), 15, 500, 3, 4, 5);
 Insert into Project values (4, CURRENT_DATE(), 15, 500, 3, 4, 5);
 Insert into Project values (5, CURRENT_DATE(), 15, 500, 3, 4, 5);
