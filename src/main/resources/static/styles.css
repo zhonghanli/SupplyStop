@@ -13,10 +13,10 @@ body,html {
 
 #slogan{
     text-align: center;
-    line-height: 200px;
     font-size: 6vw;
-    color: black;
-    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #ssblurb{
