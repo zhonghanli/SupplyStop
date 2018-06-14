@@ -12,7 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created by John on 7/11/2017.
@@ -44,7 +48,7 @@ public class HomeController {
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String showProjectForm(Model model) {
-        model.addAttribute("p", new Project());
+        model.addAttribute("project", new Project());
         model.addAttribute("sponsorList", projectService.listSponsors());
         model.addAttribute("itemList", projectService.listItems());
         model.addAttribute("locationList", projectService.listLocations());
@@ -52,7 +56,13 @@ public class HomeController {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String createProject(@ModelAttribute("p") Project project){
+    public String createProject(@Valid Project project, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("sponsorList", projectService.listSponsors());
+            model.addAttribute("itemList", projectService.listItems());
+            model.addAttribute("locationList", projectService.listLocations());
+            return "projectcreate/createProject";
+        }
         projectService.save(project);
         return "projectcreate/projectCreatedPage";
     }

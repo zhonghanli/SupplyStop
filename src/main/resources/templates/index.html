@@ -1,17 +1,65 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8"/>
     <title>SupplyStop</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 </head>
 <body>
-    <p th:text="|Current Sponsor : ${sponsor}|"></p>
-    <p th:text="|Current Freebie : ${item.Type}|"></p>
-    <p th:text="|Current Location : ${location}|"></p>
-    <a href="/sponsors/">All Sponsors</a><br/>
-    <a href="/projects/">Project Directory</a><br/>
-    <a href="/create/">Create a Project</a><br/>
+    <nav class="navbar navbar-default navbar-fixed-top" id="nav-trans">
+        <div class="container" id="homepage-navbar">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">SupplyStop</a>
+            </div>
 
+            <div class="collapse navbar-collapse" id="navbar_collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/sponsors/">Sponsors</a></li>
+                    <li><a href="/projects/">Projects</a></li>
+                    <li><a href="/create/">Create a Project</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="parallax"></div>
+
+    <div id="homepage" class="container">
+        <div id="slogan" class="container">
+            <p>Reimagining spaces.</p>
+        </div>
+    </div>
+
+    <div class="parallax2"></div>
+
+    <div class="container" style="height: 40%">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 id="intro">Intro</h2>
+                <p id="ssblurb">
+                    Every day, students are bombarded with pamphlets, flyers and other forms of advertising that swarm their spaces while offering little functional value. SupplyStop aims to solve this problem by empowering organizations and businesses with practical exposure; the handouts become tools, not liabilities. Their logos will be printed on various bulk merchandise: pens, dry-erase markers, cups, tissue packs, ping-pong balls, etc and be offered from a single point of distribution on campus: the SupplyStop. In this way, students are not only willfully choosing the ads they are seeing, but are using them in their workspaces for an extended period of time as well.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h2>Ongoing SupplyStop</h2>
+                <p th:text="|Current Sponsor : ${sponsor}|"></p>
+                <p th:text="|Current Supply : ${item.Type}|"></p>
+                <p th:text="|Current Location : ${location}|"></p>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

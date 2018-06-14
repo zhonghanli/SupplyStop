@@ -47,9 +47,9 @@ public class ProjectService {
 
 
     public void save(Project project){
-        projectRepository.save(project);
         Date date = new Date();
         project.setDate(date);
+        projectRepository.save(project);
     }
 
     public Project findById(Integer id){

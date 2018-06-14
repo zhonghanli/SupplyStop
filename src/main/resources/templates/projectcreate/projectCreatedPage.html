@@ -3,9 +3,33 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <link rel="stylesheet"  type="text/css" th:href="@{/pstyles.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
     <title>Project Created</title>
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">SupplyStop</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar_collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/sponsors/">Sponsors</a></li>
+                <li><a href="/projects/">Projects</a></li>
+                <li><a href="/create/">Create a Project</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
     <p>Your project has been successfully created and deployed!</p>
     <a href="../">Click here to go back to the homepage!</a>
 </body>

@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -33,7 +36,7 @@ public class SponsorController {
     public String sponsors(Model model){
         List<Sponsor> s = sponsorService.getAllSponsors();
         model.addAttribute("sponsors",s);
-        model.addAttribute("s",new Sponsor());
+        model.addAttribute("sponsor",new Sponsor());
         return "sponsors";
     }
 
@@ -50,7 +53,14 @@ public class SponsorController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String newSponsor(@ModelAttribute("s") Sponsor sponsor, Model model){
+    public String newSponsor(@Valid Sponsor sponsor, BindingResult bindingResult, Model model){
+        logger.info("Has errors="+bindingResult.hasErrors());
+        if(bindingResult.hasErrors()){
+            List<Sponsor> s = sponsorService.getAllSponsors();
+            model.addAttribute("sponsors",s);
+            return "sponsors";
+        }
+
         sponsorService.save(sponsor);
         logger.info("Created a new sponsor with name: "+sponsor.getName());
         List<Sponsor> s = sponsorService.getAllSponsors();

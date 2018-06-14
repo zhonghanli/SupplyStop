@@ -3,20 +3,50 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <link rel="stylesheet"  type="text/css" th:href="@{/pstyles.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
     <title>Create a Project</title>
 </head>
 <body>
-<h1>Project Creation Form</h1>
-<form action="#" th:action="@{/create}" th:object="${p}" method="post">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">SupplyStop</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar_collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/sponsors/">Sponsors</a></li>
+                <li><a href="/projects/">Projects</a></li>
+                <li><a href="/create/">Create a Project</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <h1>Project Creation Form</h1>
+    <form action="#" th:action="@{/create}" th:object="${project}" method="post">
     <label for="sponsorSelect">Select the sponsor:</label>
     <select id="sponsorSelect" th:field="*{Sponsor}" th:required="required">
         <option th:each="sponsor : ${sponsorList}" th:value="${sponsor.id}" th:text="${sponsor.Name}"></option>
     </select>
+        <!--<div class="alert alert-success" role="alert">-->
+            <!--<p th:if="${#fields.hasErrors('sponsor')}" th:errors="*{sponsor}">Sponsor Error</p>-->
+        <!--</div>-->
     <br/>
     <label  for="itemSelect">Select the item:</label>
     <select id="itemSelect" th:field="*{Item}" th:required="required">
         <option th:each="item : ${itemList}" th:value="${item.id}" th:text="${item.Type}"></option>
     </select>
+    <p th:if="${#fields.hasErrors('item')}" th:errors="*{item}">Item Error</p>
     <br/>
     <label  for="locationSelect">Select the location:</label>
     <select id="locationSelect" th:field="*{Location}" th:required="required">
@@ -25,12 +55,15 @@
     <br/>
     <label for="quantity">Quantity:</label>
     <input id="quantity"  th:type="number" th:field="*{Quantity}" min="1"/>
+    <p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Quantity Error</p>
     <br/>
     <label for="price">Price:</label>
     <input id="price" th:type="number" th:field="*{Price}" min="1"/>
+    <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
 
 
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
+</div>
 </body>
 </html>

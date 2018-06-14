@@ -3,25 +3,68 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <link rel="stylesheet"  type="text/css" th:href="@{/pstyles.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
     <title>Sponsors</title>
 </head>
 <body>
-    <tr th:each="sponsor : ${sponsors}">
-        <a th:href="@{/sponsors/{id}(id=${sponsor.Id})}"><td th:text="${sponsor.Name}"></td></a>
-    </tr>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">SupplyStop</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar_collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/sponsors/">Sponsors</a></li>
+                <li><a href="/projects/">Projects</a></li>
+                <li><a href="/create/">Create a Project</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+    <div class="container">
+    <p th:each="sponsor : ${sponsors}">
+        <a th:href="@{/sponsors/{id}(id=${sponsor.Id})}"><span th:text="${sponsor.Name}"/></a>
+    </p>
 
     <h1>Add a Sponsor</h1>
-    <form action="#" th:action="@{/sponsors/}" th:object="${s}" method="post">
-        <p>Name: <input type="text" th:field="*{Name}" /></p>
-        <p>Type: <input type="text" th:field="*{Type}" /></p>
-        <p>Size: <select th:field="*{Size}" th:required="required">
-            <option th:value="s" th:text="Small"/>
-            <option th:value="m" th:text="Medium"/>
-            <option th:value="l" th:text="Large"/>
-            </select>
-        </p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <form action="#" th:action="@{/sponsors/}" th:object="${sponsor}" method="post">
+        <table>
+            <tr>
+                <td>Name: </td>
+                <td><input type="text" th:field="*{Name}" /></td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+            </tr>
+            <tr>
+                <td>Type: </td>
+                <td><input type="text" th:field="*{Type}" /></td>
+                <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Type Error</td>
+            </tr>
+            <tr>
+                <td>Size: </td>
+                <td>
+                    <select th:field="*{Size}" th:required="required">
+                        <option th:value="s" th:text="Small"/>
+                        <option th:value="m" th:text="Medium"/>
+                        <option th:value="l" th:text="Large"/>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></td>
+            </tr>
+        </table>
     </form>
+    </div>
 </body>
 
 </html>

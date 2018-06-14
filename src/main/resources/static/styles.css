@@ -1,0 +1,60 @@
+body,html {
+    height: 100%;
+}
+
+#nav-trans{
+    background-color: #ffffff;
+    border-color: transparent;
+}
+
+#homepage-navbar a{
+    color: black;
+}
+
+#slogan{
+    text-align: center;
+    font-size: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#ssblurb{
+    text-align: left;
+    color: black;
+}
+
+
+@media (max-width: 979px) {
+    body {
+        padding-top: 0px;
+    }
+}
+.parallax {
+    /* The image used */
+    background-image: url("studying.jpg");
+
+    /* Set a specific height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax2 {
+    /* The image used */
+    background-image: url("cup3.jpg");
+
+    /* Set a specific height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
